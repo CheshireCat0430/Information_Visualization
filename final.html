@@ -182,7 +182,7 @@
         //     update();
         // }
 
-        d3.csv('./Cleaned_Laptop_data2.csv')
+        d3.csv('./Cleaned_Laptop_data_filtering.csv')
             .then(csvData => {
                 csvData.forEach(d => {
                     d["brand"] = +d["brand"];
