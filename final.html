@@ -1,25 +1,38 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <script src="components/scatterplot.js"></script>
+    <script src="components/histogram.js"></script>
+    <script src="components/datatable.js"></script>
+    <script src="components/stackedchart.js"></script>
 
 
     <title>My Scatterplot</title>
     <style>
         body {
             background: #eee;
+            overflow-y: scroll;
         }
 
         .container {
-            width: 640px;
+            width: 1600px;
             background: white;
+        }
+
+        /* In the <style> tag in index.html */
+        .brushed {
+            stroke-width: 1;
+            stroke: gray;
+            r: 5;
         }
     </style>
 </head>
@@ -34,26 +47,38 @@
 
     </header>
 
-    <main class="container">
+    <main class="container pb-3">
         <div class="row pt-2">
             <div class="col-1 text-end pe-2"><strong>X:</strong></div>
             <div class="col-11">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="sepal.length" id="x-sl"
+                    <input class="form-check-input" type="radio" name="x-encoding" value="ram_gb" id="x-sl"
                         checked>
-                    <label class="form-check-label" for="x-sl">SepalLength</label>
+                    <label class="form-check-label" for="x-sl">ram_gb</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="sepal.width" id="x-sw">
-                    <label class="form-check-label" for="x-sw">SepalWidth</label>
+                    <input class="form-check-input" type="radio" name="x-encoding" value="ssd" id="x-sw">
+                    <label class="form-check-label" for="x-sw">ssd</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="petal.length" id="x-pl">
-                    <label class="form-check-label" for="x-pl">PetalLength</label>
+                    <input class="form-check-input" type="radio" name="x-encoding" value="hdd" id="x-pl">
+                    <label class="form-check-label" for="x-pl">hdd</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="petal.width" id="x-pw">
-                    <label class="form-check-label" for="x-pw">PetalWidth</label>
+                    <input class="form-check-input" type="radio" name="x-encoding" value="os_bit" id="x-pw">
+                    <label class="form-check-label" for="x-pw">os_bit</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="x-encoding" value="graphic_card_gb" id="x-pw">
+                    <label class="form-check-label" for="x-pw">graphic_card_gb</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="x-encoding" value="display_size" id="x-pw">
+                    <label class="form-check-label" for="x-pw">display_size</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="x-encoding" value="warranty" id="x-pw">
+                    <label class="form-check-label" for="x-pw">warranty</label>
                 </div>
             </div>
         </div>
@@ -61,147 +86,399 @@
             <div class="col-1 text-end pe-2"><strong>Y:</strong></div>
             <div class="col-11">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="sepal.length" id="y-sl">
-                    <label class="form-check-label" for="y-sl">SepalLength</label>
+                    <input class="form-check-input" type="radio" name="y-encoding" value="latest_price" id="y-sl">
+                    <label class="form-check-label" for="y-sl">latest_price</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="sepal.width" id="y-sw"
+                    <input class="form-check-input" type="radio" name="y-encoding" value="old_price" id="y-sw"
                         checked>
-                    <label class="form-check-label" for="y-sw">SepalWidth</label>
+                    <label class="form-check-label" for="y-sw">old_price</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="petal.length" id="y-pl">
-                    <label class="form-check-label" for="y-pl">PetalLength</label>
+                    <input class="form-check-input" type="radio" name="y-encoding" value="discount" id="y-pl">
+                    <label class="form-check-label" for="y-pl">discount</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="petal.width" id="y-pw">
-                    <label class="form-check-label" for="y-pw">PetalWidth</label>
+                    <input class="form-check-input" type="radio" name="y-encoding" value="star_rating" id="y-pw">
+                    <label class="form-check-label" for="y-pw">star_rating</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="y-encoding" value="ratings" id="y-pw">
+                    <label class="form-check-label" for="y-pw">ratings</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="y-encoding" value="reviews" id="y-pw">
+                    <label class="form-check-label" for="y-pw">reviews</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col offset-1">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="use-color">
+                    <input class="form-check-input" type="checkbox" role="switch" id="use-color" checked>
                     <label class="form-check-label" for="use-color">Color-encode Class</label>
                 </div>
             </div>
         </div>
-        <div class="text-end">
-            <button class="btn btn-primary" id="update">Update</button>
-            <button class="btn btn-secondary" id="reset">Reset</button>
-        </div>
         <div class="text-center">
-            <svg width="400" height="400" id="svg">
+            <svg width="800" height="800" id="scatterplot">
+            </svg>
+
+            <svg width="800" height="800" id="histogram">
             </svg>
         </div>
+        
+        <div class="row pt-2">
+            <div class="col-1 text-end pe-2"><strong>Brand:</strong></div>
+            <div class="col-11">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="ASUS" id="checkbox"
+                        checked>
+                    <label class="form-check-label" for="x-sl">ASUS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="HP" id="checkbox" checked>
+                    <label class="form-check-label" for="x-sw">HP</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Lenovo" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pl">Lenovo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="DELL" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">DELL</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="MSI" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">MSI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="realme" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">realme</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="acer" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">acer</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="RedmiBook" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">RedmiBook</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Nokia" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Nokia</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Infinix" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Infinix</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Mi" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Mi</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="APPLE" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">APPLE</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="MICROSOFT" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">MICROSOFT</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="LG" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">LG</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Vaio" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Vaio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Smartron" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Smartron</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Avita" id="checkbox" checked>
+                    <label class="form-check-label" for="x-pw">Avita</label>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-1 text-end pe-2"><strong>Feature:</strong></div>
+            <div class="col-11">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="processor_brand" id="checkbox"
+                        checked>
+                    <label class="form-check-label" for="x-sl">processor_brand</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="processor_name" id="checkbox">
+                    <label class="form-check-label" for="x-sw">processor_name</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="processor_gnrtn" id="checkbox">
+                    <label class="form-check-label" for="x-pl">processor_gnrtn</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="ram_gb" id="checkbox">
+                    <label class="form-check-label" for="x-pw">ram_gb</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="ram_type" id="checkbox">
+                    <label class="form-check-label" for="x-pw">ram_type</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="ssd" id="checkbox">
+                    <label class="form-check-label" for="x-pw">ssd</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="hdd" id="checkbox">
+                    <label class="form-check-label" for="x-pw">hdd</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="os" id="checkbox">
+                    <label class="form-check-label" for="x-pw">os</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="os_bit" id="checkbox">
+                    <label class="form-check-label" for="x-pw">os_bit</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="weight" id="checkbox">
+                    <label class="form-check-label" for="x-pw">weight</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="display_size" id="checkbox">
+                    <label class="form-check-label" for="x-pw">display_size</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="warranty" id="checkbox">
+                    <label class="form-check-label" for="x-pw">warranty</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="Touchscreen" id="checkbox">
+                    <label class="form-check-label" for="x-pw">Touchscreen</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="msoffice" id="checkbox">
+                    <label class="form-check-label" for="x-pw">msoffice</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create a div where the graph will take place -->
+        <div id="my_dataviz"></div>
+
+        <!-- Create a div where the graph will take place -->
+        <div id="boxplot"></div>
+
+
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Petal Length</th>
+                    <th>Petal Width</th>
+                    <th>Sepal Length</th>
+                    <th>Sepal Width</th>
+                    <th>Variety</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+
+            </tbody>
+        </table>
     </main>
 
     <script>
-        let svg; // the main container, <svg>
-        let container; // <g> for circles
-        let xAxis; // <g> for the x axis
-        let yAxis; // <g> for the y axis
-        let legend; // <g> for the legend
+        let data, brushedData, scatterplot, histogram, dataTable, width, height;
 
-        let width = 400, height = 400;
-        let margin = { top: 10, right: 10, bottom: 40, left: 40 };
-        let data; // loaded data
-        let xScale, yScale, zScale;
+        function updateScatterplot() {
+            let xVar = d3.select("input[type=radio][name=x-encoding]:checked").property("value");
+            let yVar = d3.select("input[type=radio][name=y-encoding]:checked").property("value");
+            let useColor = d3.select("#use-color").property("checked");
 
-        // function initialize() {
-        //     svg = d3.select("#svg");
-        //     container = svg.append("g");
-        //     xAxis = svg.append("g");
-        //     yAxis = svg.append("g");
-        //     legend = svg.append("g");
+            // TODO: update the scatterplot by calling scatterplot.update 
+            scatterplot.update(xVar, yVar, "brand", useColor);
+        }
 
-        //     xScale = d3.scaleLinear();
-        //     yScale = d3.scaleLinear();
-        //     zScale = d3.scaleOrdinal().domain(["Setosa", "Versicolor", "Virginica"]).range(d3.schemeCategory10)
+        function updateHistogram() {
+            histogram.update(brushedData && brushedData.length > 0 ? brushedData : data, "brand");
+        }
 
-        //     svg
-        //         .attr("width", width + margin.left + margin.right)
-        //         .attr("height", height + margin.top + margin.bottom);
+        function updateDataTable() {
+            dataTable.update(brushedData && brushedData.length > 0 ? brushedData : data, data.columns)
+        }
 
-        //     container.attr("transform", `translate(${margin.left}, ${margin.top})`);
+        function updateStackedchart() {
+            d3.select("#the_SVG_ID").remove();
+            const margin = {top: 10, right: 100, bottom: 40, left: 90},
+                width = 1000,
+                height = 400;
 
-        //     // TODO: call update when the update button (#update) is clicked
-        //     d3.select("#update").on("click", update);
-        //     // TODO: call reset when the reset button (#reset) is clicked   
-        //     d3.select("#reset").on("click", reset);       
-        // }
+            // append the svg object to the body of the page
+            const svg = d3.select("#my_dataviz")
+                .append("svg")
+                .attr("id","the_SVG_ID")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // function update() {
-        //     // TODO: read the value property of the selected radio button            
-        //     let xVar = d3.select("input[name=x-encoding]:checked").node().value;
+            // const brand_set = d3.select("input[type=checkbox][name=for-brand[]]:checked").property("value");
+            var check = document.getElementsByName("for-brand[]");
+            var check2 = d3.select("input[type=radio][name=feature]:checked").property("value");
+            const brand_set = []
+            for(var i=0;i<check.length;i++){
+                if(check[i].checked == true) {
+                    brand_set.push(check[i].value)
+                }
+            }
+            
+            const brands = data.map(d => (d.brand))
+            for(let i = 0; i < brands.length; i++) {
+                if(!brand_set.includes(brands[i]))  {
+                    brands[i] = undefined
+                }
+            }
+            delete brands.empty;
+            console.log(check2)
+            const datas = data.map(d => (d[check2]))
+            const result = {};
+            for(let i = 0; i < brands.length; i++){
+                if(result[brands[i]]) {
+                    if(result[brands[i]][datas[i]]) {
+                        result[brands[i]][datas[i]] = result[brands[i]][datas[i]] + 1;
+                    }else {
+                        result[brands[i]][datas[i]] = 0 + 1;
+                    }
+                }else {
+                    if(brand_set.includes(brands[i])){
+                        result[brands[i]] = {};
+                        if(result[brands[i]][datas[i]]) {
+                            result[brands[i]][datas[i]] = result[brands[i]][datas[i]] + 1;
+                        }else {
+                            result[brands[i]][datas[i]] = 0 + 1;
+                        }
+                    }
+                }
+            }
+            const datas_set = []
+            datas.forEach((x) => { 
+                if(!datas_set.includes(x)){
+                    datas_set.push(x)
+                }
+            });
 
-        //     // TODO: read the value property of the selected radio button
-        //     let yVar = d3.select("input[name=y-encoding]:checked").node().value;
+            // const brand_set = []
+            // brands.forEach((x) => { 
+            //     if(!brand_set.includes(x)){
+            //         brand_set.push(x)
+            //     }
+            // });
+            // datas_set.unshift('brand')
+            
+            const result_csv = []
 
-        //     // TODO: read whether the #use-color checkbox has been checked or not (boolean)
-        //     let useColor = d3.select("#use-color").node().checked;
+            for(var key in result){
+                const cnt = {}
+                cnt['bran'] = key
+                datas_set.forEach((x) => {
+                    cnt[x] = 0
+                })
+                for(var key2 in result[key]){
+                    cnt[key2] += result[key][key2]
+                }
+                result_csv.push(cnt)
+            }
+            console.log(datas_set)
+            
+            // // List of subgroups = header of the csv files = soil condition here
+            // const subgroups = datas_set
 
-        //     xScale = d3.scaleLinear().domain(d3.extent(data, d => d[xVar])).range([0, width]);
-        //     yScale = d3.scaleLinear().domain(d3.extent(data, d => d[yVar])).range([height, 0]);
+            // // List of groups = species here = value of the first column called group -> I show them on the X axis
+            // const groups = data.map(d => (d.brand))
+            
+            // Add X axis
+            const x = d3.scaleBand()
+                .domain(brand_set)
+                .range([0, width])
+                .padding([0.2])
+            svg.append("g")
+                .attr("transform", `translate(0, ${height})`)
+                .call(d3.axisBottom(x).tickSizeOuter(0));
+                
+            // Add Y axis
+            const y = d3.scaleLinear()
+                .domain([0, 200])
+                .range([ height, 0 ]);
+            svg.append("g")
+                .call(d3.axisLeft(y));
+                
+            // color palette = one color per subgroup
+            const color = d3.scaleOrdinal()
+                .domain(datas_set)
+                .range(d3.schemeCategory10)
+                
+            const legend = svg.append("g")
+                .attr("transform", `translate(${width + 10}, ${margin.top})`)
+                .call(d3.legendColor().scale(color))
 
-        //     container.selectAll("circle")
-        //         .data(data)
-        //         .join("circle")
-        //         .transition()
-        //         .attr("cx", d => xScale(d[xVar]))
-        //         .attr("cy", d => yScale(d[yVar]))
-        //         // TODO: if useColor is true, call zScale. Otherwise, always return black
+            //stack the data? --> stack per subgroup
+            const stackedData = d3.stack().keys(datas_set)(result_csv)
+                
+            console.log(stackedData)
+            
+            // Show the bars
+            svg.append("g")
+                .selectAll("g")
+                // Enter in the stack data = loop key per key = group per group
+                .data(stackedData)
+                .join("g")
+                    .attr("fill", d => color(d.key))
+                    .attr("class", d => "myRect a" + datas_set.findIndex(v => v === d.key) )
+                    .selectAll("rect")
+                    // enter a second time = loop subgroup per subgroup to add all rectangles
+                    .data(d => d)
+                    .join("rect")
+                        .attr("x", d => x(d.data.bran))
+                        .attr("y", d => y(d[1]))
+                        .attr("height", d => y(d[0]) - y(d[1]))
+                        .attr("width",x.bandwidth())
 
-        //         // Hint: you can use the ternary operator (a ? b : c)
-        //         .attr("fill", d => (useColor ? zScale(d.variety) : 'black'))
-        //         .attr("r", 3)
+                        .attr("stroke", "grey")
+                        .on("mouseover", function (event,d) { // What happens when user hover a bar
+                            
+                            // what subgroup are we hovering?
+                            const subGroupName = d3.select(this.parentNode).datum().key
+                            console.log(subGroupName)
+                            // Reduce opacity of all rect to 0.2
+                            d3.selectAll(".myRect").style("opacity", 0.2)
+                            const query = "a" + datas_set.findIndex(v => v === subGroupName)
+                            // Highlight all rects of this subgroup with opacity 1. It is possible to select them since they have a specific class = their name.
+                            d3.selectAll("."+query).style("opacity",1)
+                        })
+                        .on("mouseleave", function (event,d) { // When user do not hover anymore
 
-        //     xAxis
-        //         .attr("transform", `translate(${margin.left}, ${margin.top + height})`)
-        //         .transition()
-        //         .call(d3.axisBottom(xScale));
+                            // Back to normal opacity: 1
+                            d3.selectAll(".myRect")
+                            .style("opacity",1)
+                    })
+        }
 
-        //     yAxis
-        //         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-        //         .transition()
-        //         .call(d3.axisLeft(yScale));
+        function updateBoxplot(){
 
-        //     // TODO: if use color is true, draw and show the color legend
-        //     // TODO: otherwise, hide the legend.
-        //     legend
-        //         .attr("transform", "translate(370, 320)")
-        //         .call(d3.legendColor().scale(zScale))
-        //         .style("opacity", (useColor ? 100 : 0));
-        // }
+        }
 
-        // function reset() {
-        //     d3.select("input[type=radio][name=x-encoding][value='sepal.length']").property("checked", true);
-        //     d3.select("input[type=radio][name=y-encoding][value='sepal.width']").property("checked", true);
 
-        //     update();
-        // }
-
-        d3.csv('./Cleaned_Laptop_data_filtering.csv')
+        d3.csv("https://raw.githubusercontent.com/CheshireCat0430/Information_Visualization/master/Cleaned_Laptop_data_filtering.csv")
             .then(csvData => {
                 csvData.forEach(d => {
-                    d["brand"] = +d["brand"];
-                    d["model"] = +d["model"];
-                    d["processor_brand"] = +d["processor_brand"];
-                    d["processor_name"] = +d["processor_name"];
-                    d["processor_gnrtn"] = +d["processor_gnrtn"];
                     d["ram_gb"] = +d["ram_gb"];
-                    d["ram_type"] = +d["ram_type"];
                     d["ssd"] = +d["ssd"];
                     d["hdd"] = +d["hdd"];
-                    d["os"] = +d["os"];
                     d["os_bit"] = +d["os_bit"];
                     d["graphic_card_gb"] = +d["graphic_card_gb"];
-                    d["weight"] = +d["weight"];
                     d["display_size"] = +d["display_size"];
                     d["warranty"] = +d["warranty"];
-                    d["Touchscreen"] = +d["Touchscreen"];
-                    d["msoffice"] = +d["msoffice"];
                     d["latest_price"] = +d["latest_price"];
                     d["old_price"] = +d["old_price"];
                     d["discount"] = +d["discount"];
@@ -211,24 +488,137 @@
                 });
 
                 data = csvData;
-                console.log(data)
-                // initialize();
-                // update();
+
+                scatterplot = new Scatterplot("#scatterplot", data);
+                scatterplot.initialize();
+
+                updateScatterplot();
+                d3.selectAll("input[type=radio][name=x-encoding]").on("change", updateScatterplot);
+                d3.selectAll("input[type=radio][name=y-encoding]").on("change", updateScatterplot);
+                d3.selectAll("#use-color").on("change", updateScatterplot);
+
+                // TODO: bind an event handler to "brush" events                
+                scatterplot.on("brush", (brushedItems) => {
+                    brushedData = brushedItems;
+                    updateHistogram();
+                    updateDataTable();
+                });
+
+                histogram = new Histogram("#histogram");
+                histogram.initialize();
+
+                updateHistogram();
+
+                dataTable = new DataTable("#data-table");
+
+                updateDataTable();
+
+                updateStackedchart()
+                d3.selectAll("#checkbox").on("change", updateStackedchart);
             })
 
-        // d3.csv("https://gist.githubusercontent.com/netj/8836201/raw/6f9306ad21398ea43cba4f7d537619d0e07d5ae3/iris.csv")
-        //     .then(csvData => {
-        //         csvData.forEach(d => {
-        //             d["petal.length"] = +d["petal.length"];
-        //             d["petal.width"] = +d["petal.width"];
-        //             d["sepal.length"] = +d["sepal.length"];
-        //             d["sepal.width"] = +d["sepal.width"];
-        //         });
 
-        //         data = csvData;
-        //         initialize();
-        //         update();
-        //     })
+        var margin = {top: 10, right: 30, bottom: 30, left: 40}
+        width = 460 - margin.left - margin.right
+        height = 400 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#boxplot")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // Parse the Data
+        d3.csv("https://raw.githubusercontent.com/CheshireCat0430/Information_Visualization/master/Cleaned_Laptop_data_filtering.csv").then( function(data) {
+            // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
+            var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
+                .key(function(d) { return d.brand;})
+                .rollup(function(d) {
+                    q1 = d3.quantile(d.map(function(g) { return g.latest_price;}).sort(d3.ascending),.25)
+                    median = d3.quantile(d.map(function(g) { return g.latest_price;}).sort(d3.ascending),.5)
+                    q3 = d3.quantile(d.map(function(g) { return g.latest_price;}).sort(d3.ascending),.75)
+                    interQuantileRange = q3 - q1
+                    min = q1 - 1.5 * interQuantileRange
+                    max = q3 + 1.5 * interQuantileRange
+                    return({q1: q1, median: median, q3: q3, interQuantileRange: interQuantileRange, min: min, max: max})
+                })
+                .entries(data)
+
+            // Show the X scale
+            var x = d3.scaleBand()
+                .range([ 0, width ])
+                .domain(["setosa", "versicolor", "virginica"])
+                .paddingInner(1)
+                .paddingOuter(.5)
+
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+
+            // Show the Y scale
+            var y = d3.scaleLinear()
+                .domain([3,9])
+                .range([height, 0])
+            svg.append("g").call(d3.axisLeft(y))
+
+            // Show the main vertical line
+            svg
+                .selectAll("vertLines")
+                .data(sumstat)
+                .enter()
+                .append("line")
+                .attr("x1", function(d){return(x(d.key))})
+                .attr("x2", function(d){return(x(d.key))})
+                .attr("y1", function(d){return(y(d.value.min))})
+                .attr("y2", function(d){return(y(d.value.max))})
+                .attr("stroke", "black")
+                .style("width", 40)
+
+            // rectangle for the main box
+            var boxWidth = 100
+            svg
+                .selectAll("boxes")
+                .data(sumstat)
+                .enter()
+                .append("rect")
+                    .attr("x", function(d){return(x(d.key)-boxWidth/2)})
+                    .attr("y", function(d){return(y(d.value.q3))})
+                    .attr("height", function(d){return(y(d.value.q1)-y(d.value.q3))})
+                    .attr("width", boxWidth )
+                    .attr("stroke", "black")
+                    .style("fill", "#69b3a2")
+
+            // Show the median
+            svg
+                .selectAll("medianLines")
+                .data(sumstat)
+                .enter()
+                .append("line")
+                .attr("x1", function(d){return(x(d.key)-boxWidth/2) })
+                .attr("x2", function(d){return(x(d.key)+boxWidth/2) })
+                .attr("y1", function(d){return(y(d.value.median))})
+                .attr("y2", function(d){return(y(d.value.median))})
+                .attr("stroke", "black")
+                .style("width", 80)
+
+            // Add individual points with jitter
+            var jitterWidth = 50
+            svg
+                .selectAll("indPoints")
+                .data(data)
+                .enter()
+                .append("circle")
+                    .attr("cx", function(d){return(x(d.Species) - jitterWidth/2 + Math.random()*jitterWidth )})
+                    .attr("cy", function(d){return(y(d.Sepal_Length))})
+                    .attr("r", 4)
+                    .style("fill", "white")
+                    .attr("stroke", "black")
+
+        })
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
