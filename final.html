@@ -185,16 +185,9 @@
         d3.csv('./Cleaned_Laptop_data_filtering.csv')
             .then(csvData => {
                 csvData.forEach(d => {
-                    d["brand"] = +d["brand"];
-                    d["model"] = +d["model"];
-                    d["processor_brand"] = +d["processor_brand"];
-                    d["processor_name"] = +d["processor_name"];
-                    d["processor_gnrtn"] = +d["processor_gnrtn"];
                     d["ram_gb"] = +d["ram_gb"];
-                    d["ram_type"] = +d["ram_type"];
                     d["ssd"] = +d["ssd"];
                     d["hdd"] = +d["hdd"];
-                    d["os"] = +d["os"];
                     d["os_bit"] = +d["os_bit"];
                     d["graphic_card_gb"] = +d["graphic_card_gb"];
                     d["display_size"] = +d["display_size"];
