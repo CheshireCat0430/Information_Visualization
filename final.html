@@ -88,12 +88,29 @@
             <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;">Dataset</span>
             <div class="my-3">
                 <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
-                    This is scatterplot using laptop feature data and user evaluation data.
-                    You can choose one attribute in laptop feature and other attribute in user evaluation.
-                    The scatterplot shows correlation between two datas.
-                    The bar chart shows number of datas in each brand.
-                    You can use brush function to see some datas.
+                    The dataset is about laptop data.
+                    There are three kind of attribute.
                 </span>
+                <ul class="pe-2 h2 my-3" style="font-size:20px;" >
+                    <li><span>
+                        Brand : 
+                    </span>
+                    <span style="color:grey">
+                        brand
+                    </span></li>
+                    <li><span>
+                        Laptop Feature : 
+                    </span>
+                    <span style="color:grey">
+                        processor_brand, processor_name, processor_gnrtn, _gb, ram_type, ssd, hdd, os, os_bit, graphic_card_gb, weight, display_size, warranty, Touchscreen, msoffice
+                    </span></li>
+                    <li><span>
+                        User evaluation : 
+                    </span>
+                    <span style="color:grey">
+                        latest_price, old_price, discount, star_rating, ratings, reviews
+                    </span></li>
+                </ul>
             </div>
         </div>
 
@@ -331,6 +348,10 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="feature" value="os_bit" id="checkbox">
                     <label class="form-check-label" for="x-pw">os_bit</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="feature" value="graphic_card_gb" id="checkbox">
+                    <label class="form-check-label" for="x-pw">graphic_card_gb</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="feature" value="weight" id="checkbox">
