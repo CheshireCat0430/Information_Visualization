@@ -20,8 +20,19 @@
     <title>My Scatterplot</title>
     <style>
         body {
+            padding-top: 200px;
             background: #eee;
             overflow-y: scroll;
+        }
+        
+        header{
+            background: teal;
+            position:fixed;
+            color: white;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px
         }
 
         .container {
@@ -35,14 +46,28 @@
             stroke: gray;
             r: 5;
         }
+
+        a:link {
+            color : white;
+        }
+        a:visited {
+            color : white;
+        }
+        a:hover {
+            color : red;
+        }
+        a:active {
+            color : green
+        }
+
     </style>
 </head>
 
 <body>
     <hr style="width:0;">
     <header>
-        <nav class="container navbar navbar-light bg-light">
-            <div class="container-fluid">
+        <nav class="navbar">
+            <div class="container-fluid mb-4">
                 <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;">Information Visualization Final Project</span>
             </div>
             <div class="container-fluid">
@@ -50,6 +75,7 @@
                 <p style="font-size:20px; margin:0 auto;"><a href="#pos2" >Laptop Feature & User Evaluation</a></p>
                 <p style="font-size:20px; margin:0 auto;"><a href="#pos3" >Brand & Laptop Feature</a></p>
                 <p style="font-size:20px; margin:0 auto;"><a href="#pos4" >Brand & User Evaluation</a></p>
+                <p style="font-size:20px; margin:0 auto;"><a href="#pos5" >Data Filtering</a></p>
             </div>
         </nav>
         
@@ -58,10 +84,18 @@
 
     <hr style="width:0;" id="pos1">
     <main class="container pb-3">
-        <div class="px-5">
+        <div class="px-5 py-3">
             <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;">Dataset</span>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
+                    This is scatterplot using laptop feature data and user evaluation data.
+                    You can choose one attribute in laptop feature and other attribute in user evaluation.
+                    The scatterplot shows correlation between two datas.
+                    The bar chart shows number of datas in each brand.
+                    You can use brush function to see some datas.
+                </span>
+            </div>
         </div>
-        
 
     </main>
 
@@ -328,18 +362,18 @@
     <hr style="width:0;" id="pos4">
     <main class="container pb-3">
         <div class="px-5 py-3">
-            <span class="pb-2 h1" style="font-size:50px;"> Brand & Laptop Feature Visualization</span>
+            <span class="pb-2 h1" style="font-size:50px;"> Brand & User Evaluation Visualization</span>
             <div class="my-3">
                 <span class="pe-2 h2 my-3" style="font-size:20px; color:grey;" id="pos1">
-                    | Stacked Bar Chart | Group Highlight |
+                    | Nested Line Plot | Range Change |
                 </span>
             </div>
             <div class="my-3">
                 <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
-                    This is stacked bar chart using brand data and laptop feature data.
-                    You can choose several brand and one attribute in laptop feature.
-                    The stacked bar chart shows number of laptop that stacked with feature for each brands.
-                    You can see group highlight in your mouse position.
+                    This is nested line plot using brand data and user Evaluation data.
+                    You can choose several user evaluation criteria.
+                    The nested line plot shows average of user evaluation for each brands.
+                    You can see differ of range according to criteria.
                 </span>
             </div>
         </div>
@@ -376,15 +410,31 @@
 
         <!-- Create a div where the graph will take place -->
         <div id="line_graph"></div>
+    </main>
+
+    <hr style="width:0;" id="pos5">
+    <main class="container pb-3">
+        <div class="px-5 py-3">
+            <span class="pb-2 h1" style="font-size:50px;">Data Filtering</span>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px; color:grey;" id="pos1">
+                    | Filtering |
+                </span>
+            </div>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
+                    This is full dataset table.
+                    You can select sevaral feature about laptop.
+                    The table shows information of datas whice are fit your criteria.
+                </span>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-1 text-end pe-2"><strong>Filtering : </strong></div>
+            <div class="col-1 text-end pe-2"><strong>Filtering: </strong></div>
             <div class="col-11" id="filtering_data">
                 
             </div>
         </div>
-    </main><hr style="width:0;">
-
-    <main class="container pb-3">
         <table class="table table-striped text-center"  style="font-size:10px;">
             <thead>
                 <tr>
