@@ -39,92 +39,122 @@
 </head>
 
 <body>
+    <hr style="width:0;">
     <header>
         <nav class="container navbar navbar-light bg-light">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;">Information Visualization Final Project</span>
             </div>
-            <div class="container-fluid" style="margin:0 auto;">
-                <p><a href="#pos1" style="font-size:20px;">문서의 하단 지정 위치로</a></p>
+            <div class="container-fluid">
+                <p style="font-size:20px; margin:0 auto;"><a href="#pos1" >Dataset</a></p>
+                <p style="font-size:20px; margin:0 auto;"><a href="#pos2" >Laptop Feature & User Evaluation</a></p>
+                <p style="font-size:20px; margin:0 auto;"><a href="#pos3" >Brand & Laptop Feature</a></p>
+                <p style="font-size:20px; margin:0 auto;"><a href="#pos4" >Brand & User Evaluation</a></p>
             </div>
         </nav>
         
 
     </header>
 
+    <hr style="width:0;" id="pos1">
     <main class="container pb-3">
-        <div class="row pt-2">
-            <div>
-                <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;" id="pos1">Dataset</span>
+        <div class="px-5">
+            <span class="navbar-brand mb-0 h1" style="font-size:50px; margin:0 auto;">Dataset</span>
+        </div>
+        
+
+    </main>
+
+    <hr style="width:0;" id="pos2">
+    <main class="container pb-3">
+        <div class="px-5 py-3">
+            <span class="pb-2 h1" style="font-size:50px;"> Laptop Feature & User Evaluation Visualization</span>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px; color:grey;" id="pos1">
+                    | Scatterplot | Histogram | Brush |
+                </span>
             </div>
-            <div class="col-1 text-end pe-2"><strong>X:</strong></div>
-            <div class="col-11">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="ram_gb" id="x-sl"
-                        checked>
-                    <label class="form-check-label" for="x-sl">ram_gb</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="ssd" id="x-sw">
-                    <label class="form-check-label" for="x-sw">ssd</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="hdd" id="x-pl">
-                    <label class="form-check-label" for="x-pl">hdd</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="os_bit" id="x-pw">
-                    <label class="form-check-label" for="x-pw">os_bit</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="graphic_card_gb" id="x-pw">
-                    <label class="form-check-label" for="x-pw">graphic_card_gb</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="display_size" id="x-pw">
-                    <label class="form-check-label" for="x-pw">display_size</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="x-encoding" value="warranty" id="x-pw">
-                    <label class="form-check-label" for="x-pw">warranty</label>
-                </div>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
+                    This is scatterplot using laptop feature data and user evaluation data.
+                    You can choose one attribute in laptop feature and other attribute in user evaluation.
+                    The scatterplot shows correlation between two datas.
+                    The bar chart shows number of datas in each brand.
+                    You can use brush function to see some datas.
+                </span>
             </div>
         </div>
-        <div class="row">
-            <div class="col-1 text-end pe-2"><strong>Y:</strong></div>
-            <div class="col-11">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="latest_price" id="y-sl">
-                    <label class="form-check-label" for="y-sl">latest_price</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="old_price" id="y-sw"
-                        checked>
-                    <label class="form-check-label" for="y-sw">old_price</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="discount" id="y-pl">
-                    <label class="form-check-label" for="y-pl">discount</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="star_rating" id="y-pw">
-                    <label class="form-check-label" for="y-pw">star_rating</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="ratings" id="y-pw">
-                    <label class="form-check-label" for="y-pw">ratings</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="y-encoding" value="reviews" id="y-pw">
-                    <label class="form-check-label" for="y-pw">reviews</label>
+        <div class="mx-5" style="border: solid;">
+            <div class="row pt-2">
+                <div class="col-1 text-end pe-2"><strong>X:</strong></div>
+                <div class="col-11">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="ram_gb" id="x-sl"
+                            checked>
+                        <label class="form-check-label" for="x-sl">ram_gb</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="ssd" id="x-sw">
+                        <label class="form-check-label" for="x-sw">ssd</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="hdd" id="x-pl">
+                        <label class="form-check-label" for="x-pl">hdd</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="os_bit" id="x-pw">
+                        <label class="form-check-label" for="x-pw">os_bit</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="graphic_card_gb" id="x-pw">
+                        <label class="form-check-label" for="x-pw">graphic_card_gb</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="display_size" id="x-pw">
+                        <label class="form-check-label" for="x-pw">display_size</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="x-encoding" value="warranty" id="x-pw">
+                        <label class="form-check-label" for="x-pw">warranty</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col offset-1">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="use-color" checked>
-                    <label class="form-check-label" for="use-color">Color-encode Class</label>
+            <div class="row">
+                <div class="col-1 text-end pe-2"><strong>Y:</strong></div>
+                <div class="col-11">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="latest_price" id="y-sl">
+                        <label class="form-check-label" for="y-sl">latest_price</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="old_price" id="y-sw"
+                            checked>
+                        <label class="form-check-label" for="y-sw">old_price</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="discount" id="y-pl">
+                        <label class="form-check-label" for="y-pl">discount</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="star_rating" id="y-pw">
+                        <label class="form-check-label" for="y-pw">star_rating</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="ratings" id="y-pw">
+                        <label class="form-check-label" for="y-pw">ratings</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="y-encoding" value="reviews" id="y-pw">
+                        <label class="form-check-label" for="y-pw">reviews</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col offset-1">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="use-color" checked>
+                        <label class="form-check-label" for="use-color">Color-encode Class</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +165,26 @@
             <svg width="800" height="800" id="histogram">
             </svg>
         </div>
-        
+    </main>
+
+    <hr style="width:0;" id="pos3">
+    <main class="container pb-3">
+        <div class="px-5 py-3">
+            <span class="pb-2 h1" style="font-size:50px;"> Brand & Laptop Feature Visualization</span>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px; color:grey;" id="pos1">
+                    | Stacked Bar Chart | Group Highlight |
+                </span>
+            </div>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
+                    This is stacked bar chart using brand data and laptop feature data.
+                    You can choose several brand and one attribute in laptop feature.
+                    The stacked bar chart shows number of laptop that stacked with feature for each brands.
+                    You can see group highlight in your mouse position.
+                </span>
+            </div>
+        </div>
         <div class="row pt-2">
             <div class="col-1 text-end pe-2"><strong>Brand:</strong></div>
             <div class="col-11">
@@ -161,7 +210,7 @@
                     <label class="form-check-label" for="x-pw">MSI</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="realme" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="realme" id="checkbox">
                     <label class="form-check-label" for="x-pw">realme</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -169,39 +218,39 @@
                     <label class="form-check-label" for="x-pw">acer</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="RedmiBook" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="RedmiBook" id="checkbox">
                     <label class="form-check-label" for="x-pw">RedmiBook</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Nokia" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Nokia" id="checkbox">
                     <label class="form-check-label" for="x-pw">Nokia</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Infinix" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Infinix" id="checkbox">
                     <label class="form-check-label" for="x-pw">Infinix</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Mi" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Mi" id="checkbox">
                     <label class="form-check-label" for="x-pw">Mi</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="APPLE" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="APPLE" id="checkbox">
                     <label class="form-check-label" for="x-pw">APPLE</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="MICROSOFT" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="MICROSOFT" id="checkbox">
                     <label class="form-check-label" for="x-pw">MICROSOFT</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="LG" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="LG" id="checkbox">
                     <label class="form-check-label" for="x-pw">LG</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Vaio" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Vaio" id="checkbox">
                     <label class="form-check-label" for="x-pw">Vaio</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Smartron" id="checkbox" checked>
+                    <input class="form-check-input" type="checkbox" name="for-brand[]" value="Smartron" id="checkbox">
                     <label class="form-check-label" for="x-pw">Smartron</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -214,8 +263,7 @@
             <div class="col-1 text-end pe-2"><strong>Feature:</strong></div>
             <div class="col-11">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="feature" value="processor_brand" id="checkbox"
-                        checked>
+                    <input class="form-check-input" type="radio" name="feature" value="processor_brand" id="checkbox">
                     <label class="form-check-label" for="x-sl">processor_brand</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -223,7 +271,7 @@
                     <label class="form-check-label" for="x-sw">processor_name</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="feature" value="processor_gnrtn" id="checkbox">
+                    <input class="form-check-input" type="radio" name="feature" value="processor_gnrtn" id="checkbox" checked>
                     <label class="form-check-label" for="x-pl">processor_gnrtn</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -275,7 +323,26 @@
 
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
-
+    </main>
+    
+    <hr style="width:0;" id="pos4">
+    <main class="container pb-3">
+        <div class="px-5 py-3">
+            <span class="pb-2 h1" style="font-size:50px;"> Brand & Laptop Feature Visualization</span>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px; color:grey;" id="pos1">
+                    | Stacked Bar Chart | Group Highlight |
+                </span>
+            </div>
+            <div class="my-3">
+                <span class="pe-2 h2 my-3" style="font-size:20px;" id="pos1">
+                    This is stacked bar chart using brand data and laptop feature data.
+                    You can choose several brand and one attribute in laptop feature.
+                    The stacked bar chart shows number of laptop that stacked with feature for each brands.
+                    You can see group highlight in your mouse position.
+                </span>
+            </div>
+        </div>
         <div class="row">
             <div class="col-1 text-end pe-2"><strong>Criteria:</strong></div>
             <div class="col-11">
@@ -315,7 +382,9 @@
                 
             </div>
         </div>
+    </main><hr style="width:0;">
 
+    <main class="container pb-3">
         <table class="table table-striped text-center"  style="font-size:10px;">
             <thead>
                 <tr>
@@ -349,7 +418,7 @@
 
             </tbody>
         </table>
-    </main>
+    </main><hr style="width:0;">
 
     <script>
         let data, brushedData, scatterplot, histogram, dataTable, width, height;
@@ -753,67 +822,6 @@
         d3.csv("https://raw.githubusercontent.com/CheshireCat0430/Information_Visualization/master/Cleaned_Laptop_data_filtering.csv").then( function(data) {
             updateLinechart();
             d3.selectAll("#prices").on("change", updateLinechart);
-            // const criteria = ['latest_price', 'old_price', 'discount', 'star_rating', 'ratings', 'reviews']
-            
-            // // group the data: I want to draw one line per group
-            // const categories = [...new Set(data.map(d => d['brand']))]
-            // const sumstat = d3.group(data, d => d.brand); // nest function allows to group the calculation per level of a factor
-            // const stat_mean = [];
-            // console.log(sumstat)
-            // criteria.forEach(c => {
-            //     categories.forEach(p => {
-            //         let crit_mean = {};
-            //         const cnt_data = data.filter(d => d['brand'] === p);
-            //         const cnt_data2 = cnt_data.map(d => d[c]);
-            //         crit_mean['brand'] = p;
-            //         crit_mean['mean'] = d3.mean(cnt_data2);
-            //         // crit_mean[p] = d3.mean(cnt_data2);
-            //         crit_mean['crit'] = c;
-            //         // console.log(crit_mean);
-            //         stat_mean.push(crit_mean);
-            //     })
-            // })
-            // console.log(stat_mean)
-            // const result = d3.rollup(
-            //     stat_mean,
-            //     values => values,
-            //     d => d.crit
-            // )
-            
-            // // Add X axis --> it is a date format
-            // const x = d3.scaleBand()
-            //     .domain(categories)
-            //     .range([ 0, width ]);
-            // svg.append("g")
-            //     .attr("transform", `translate(0, ${height})`)
-            //     .call(d3.axisBottom(x).tickSizeOuter(0));
-
-            // // Add Y axis
-            // const y = d3.scaleLinear()
-            //     .domain([0, d3.max(stat_mean, function(d) { return d.mean; })])
-            //     .range([ height, 0 ]);
-            // svg.append("g")
-            //     .call(d3.axisLeft(y));
-                
-            //     // color palette
-            // const color = d3.scaleOrdinal()
-            //     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
-                
-            // console.log(result)
-            // // Draw the line
-            // svg.selectAll(".line")
-            //     .data(result)
-            //     .join("path")
-            //         .attr("fill", "none")
-            //         .attr("stroke", function(d){return color(criteria.findIndex(v => v === d[0]));})
-            //         .attr("stroke-width", 1.5)
-            //         .attr("d", function(d){
-                            
-            //             return d3.line()
-            //                 .x(function(d) { return x(d.brand); })
-            //                 .y(function(d) { return y(d.mean); })
-            //                 (d[1])
-            //         })
 
         })
 
